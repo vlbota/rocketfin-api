@@ -2,9 +2,13 @@ package vlb.developer.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Table(name = "account")
+@Table(name = "accounts")
+@Getter
+@Setter
 public class AccountEnty {
 
     @Id
@@ -22,15 +26,4 @@ public class AccountEnty {
     @JoinColumn(name = "client_id", nullable = false)
     private ClientEnty client;
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
-
-    public String getCodeBank() { return codeBank; }
-    public void setCodeBank(String codeBank) { this.codeBank = codeBank; }
-
-    public ClientEnty getClient() { return client; }
-    public void setClient(ClientEnty client) { this.client = client; }
 }

@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\vinic\\\\OneDrive\\\\Documentos\\\\projetos\\\\rocketfin-api\\\\src\\\\main\\\\java\\\\vlb\\\\developer\\\\profile\" -Recurse -File | ForEach-Object {$_.FullName})",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\vinic\\\\OneDrive\\\\Documentos\\\\projetos\\\\rocketfin-api\\\\src\\\\main\\\\java\\\\vlb\\\\developer\\\\bills\" -Recurse -File | ForEach-Object {$_.FullName} | Sort-Object)"
+    ]
+  }
+}

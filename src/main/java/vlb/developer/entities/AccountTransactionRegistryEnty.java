@@ -1,9 +1,13 @@
 package vlb.developer.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import vlb.developer.bills.enumerates.TypeOperationEnum;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "account_transaction_registry")
 public class AccountTransactionRegistryEnty {
 
@@ -18,13 +22,4 @@ public class AccountTransactionRegistryEnty {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TypeOperationEnum type;
-
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public AccountEnty getAccount() { return account; }
-    public void setAccount(AccountEnty account) { this.account = account; }
-
-    public TypeOperationEnum getType() { return type; }
-    public void setType(TypeOperationEnum type) { this.type = type; }
 }

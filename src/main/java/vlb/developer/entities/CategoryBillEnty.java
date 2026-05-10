@@ -2,9 +2,13 @@ package vlb.developer.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Table(name = "category_bill")
+@Getter
+@Setter
+@Table(name = "category_bills")
 public class CategoryBillEnty {
 
     @Id
@@ -25,18 +29,4 @@ public class CategoryBillEnty {
     @JoinColumn(name = "category_id")
     private CategoryBillEnty category;
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public String getIdentifier() { return identifier; }
-    public void setIdentifier(String identifier) { this.identifier = identifier; }
-
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
-
-    public ClientEnty getClient() { return client; }
-    public void setClient(ClientEnty client) { this.client = client; }
-
-    public CategoryBillEnty getCategory() { return category; }
-    public void setCategory(CategoryBillEnty category) { this.category = category; }
 }

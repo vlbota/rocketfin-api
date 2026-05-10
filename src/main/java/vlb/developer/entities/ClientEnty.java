@@ -9,7 +9,7 @@ import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "client")
+@Table(name = "clients")
 public class ClientEnty {
 
     @Id

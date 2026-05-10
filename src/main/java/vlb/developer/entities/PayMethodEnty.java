@@ -1,9 +1,13 @@
 package vlb.developer.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Table(name = "pay_method")
+@Getter
+@Setter
+@Table(name = "pay_methods")
 public class PayMethodEnty {
 
     @Id
@@ -20,15 +24,4 @@ public class PayMethodEnty {
     @JoinColumn(name = "account_id")
     private AccountEnty account;
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
-
-    public ClientEnty getClient() { return client; }
-    public void setClient(ClientEnty client) { this.client = client; }
-
-    public AccountEnty getAccount() { return account; }
-    public void setAccount(AccountEnty account) { this.account = account; }
 }

@@ -2,6 +2,8 @@ package vlb.developer.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import vlb.developer.bills.enumerates.TypeOperationEnum;
 
@@ -10,7 +12,9 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 
 @Entity
-@Table(name = "bill")
+@Getter
+@Setter
+@Table(name = "bills")
 public class BillEnty {
 
     @Id
@@ -53,34 +57,4 @@ public class BillEnty {
     @NotNull
     @Column(nullable = false)
     private boolean paid;
-
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public String getIdentifier() { return identifier; }
-    public void setIdentifier(String identifier) { this.identifier = identifier; }
-
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
-
-    public BigDecimal getValue() { return value; }
-    public void setValue(BigDecimal value) { this.value = value; }
-
-    public LocalDate getDue() { return due; }
-    public void setDue(LocalDate due) { this.due = due; }
-
-    public OffsetDateTime getCreatedAt() { return createdAt; }
-    public void setCreatedAt(OffsetDateTime createdAt) { this.createdAt = createdAt; }
-
-    public ClientEnty getClient() { return client; }
-    public void setClient(ClientEnty client) { this.client = client; }
-
-    public CategoryBillEnty getCategory() { return category; }
-    public void setCategory(CategoryBillEnty category) { this.category = category; }
-
-    public TypeOperationEnum getType() { return type; }
-    public void setType(TypeOperationEnum type) { this.type = type; }
-
-    public boolean isPaid() { return paid; }
-    public void setPaid(boolean paid) { this.paid = paid; }
 }
