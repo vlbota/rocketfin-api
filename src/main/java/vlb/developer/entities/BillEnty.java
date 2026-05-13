@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 import vlb.developer.bills.enumerates.TypeOperationEnum;
 
 import java.math.BigDecimal;
@@ -14,6 +16,8 @@ import java.time.OffsetDateTime;
 @Entity
 @Getter
 @Setter
+@SQLDelete(sql = "UPDATE bills SET removed = true WHERE id = ?")
+@SQLRestriction("removed = false")
 @Table(name = "bills")
 public class BillEnty {
 
@@ -57,4 +61,33 @@ public class BillEnty {
     @NotNull
     @Column(nullable = false)
     private boolean paid;
+
+    @Column(nullable = false)
+    private boolean removed = false;
+
+    public static BillEnty create(String identifier, String description, BigDecimal value, LocalDate due,
+                                   TypeOperationEnum type, ClientEnty client, CategoryBillEnty category) {
+        var bill = new BillEnty();
+        bill.setIdentifier(identifier);
+        bill.setDescription(description);
+        bill.setValue(value);
+        bill.setDue(due);
+        bill.setType(type);
+        bill.setPaid(false);
+        bill.setClient(client);
+        bill.setCategory(category);
+        return bill;
+    }
+
+    public void update(String description, BigDecimal value, LocalDate due, CategoryBillEnty category) {
+        setDescription(description);
+        setValue(value);
+        setDue(due);
+        setCategory(category);
+    }
+
+    public BillPaidEnty pay(BigDecimal valuePaid, OffsetDateTime paidAt, PayMethodEnty payMethod, AccountEnty account) {
+        setPaid(true);
+        return BillPaidEnty.create(this, valuePaid, paidAt, payMethod, account);
+    }
 }

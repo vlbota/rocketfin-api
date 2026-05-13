@@ -33,7 +33,21 @@ public class BillPaidEnty {
     private OffsetDateTime createdAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "account")
+    private AccountEnty account;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bill_id")
     private BillEnty bill;
 
+    public static BillPaidEnty create(BillEnty bill, BigDecimal valuePaid, OffsetDateTime paidAt,
+                                       PayMethodEnty payMethod, AccountEnty account) {
+        var paid = new BillPaidEnty();
+        paid.setBill(bill);
+        paid.setValuePaid(valuePaid);
+        paid.setPaidAt(paidAt);
+        paid.setPaymentMethod(payMethod);
+        paid.setAccount(account);
+        return paid;
+    }
 }
